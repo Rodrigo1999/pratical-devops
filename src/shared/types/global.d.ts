@@ -1,0 +1,1 @@
+type PartialRange<Type, Items extends keyof Type> = Omit<Type, Items> & Partial<Pick<Type, Items>>

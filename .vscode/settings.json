@@ -1,0 +1,6 @@
+{
+    "code-runner.executorMap": {
+        "typescript": "cross-env NODE_ENV=development npx ts-node -r tsconfig-paths/register --transpileOnly $fullFileName",
+        "javascript": "node $fullFileName"
+    }
+}
