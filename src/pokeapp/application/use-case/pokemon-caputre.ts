@@ -63,7 +63,7 @@ export default class UseCasePokemonCapture{
             id: pokemon.getId(),
             name: pokemon.getName(),
             level: pokemon.getLevel(),
-            full_captured_address: pokemon.getLastCapturedAddress()
+            full_captured_address: pokemon.getFullLastCapturedAddress()
         }
     }
 }

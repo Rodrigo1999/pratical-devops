@@ -4,4 +4,12 @@ export default class Id{
     get value(){
         return this.id
     }
+
+    static generateId(){
+        return "temp_"+Math.random().toString(32).substring(2)
+    }
+
+    isGenratedId(){
+        return this.id.startsWith('temp_')
+    }
 }
