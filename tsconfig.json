@@ -12,6 +12,8 @@
     "skipLibCheck": true,                                 
     "paths": {
       "@pokeapp/*": ["./src/pokeapp/*"],
+      "@geolocation/*": ["./src/geolocation/*"],
+      "@pokedex/*": ["./src/pokedex/*"],
       "@shared/*": ["./src/shared/*"]
     }
   }
