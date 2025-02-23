@@ -13,7 +13,7 @@ export default class PokemonRepository implements Pokeapp.Repository.Pokemon{
         throw new Error("Method not implemented.");
     }
 
-    wasAreadyCaptured(id: Id): InputOutput['wasAreadyCaptured']['output'] {
+    wasAreadyCapturedByPokeId(poke_id: string): InputOutput['wasAreadyCapturedByPokeId']['output'] {
         throw new Error("Method not implemented.");
     }
 

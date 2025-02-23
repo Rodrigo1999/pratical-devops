@@ -7,7 +7,7 @@ declare global{
         interface Pokemon{
             save(pokemon: Entities.Pokemon): Promise<void>
             getById(pokemonId: Id): Promise<Entities.Pokemon | null>
-            wasAreadyCaptured(id: Id): Promise<boolean>
+            wasAreadyCapturedByPokeId(poke_id: string): Promise<boolean>
         }
     }
 }

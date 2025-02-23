@@ -12,7 +12,9 @@ describe("Pokemon", () => {
             score: 50,
             lastAddressCaptured: "Rua A, Bairro B, Cidade C, ST, BRA, 12345678",
             last_evolve_at: null,
-            is_released: false
+            is_released: false,
+            poke_id: 'poke-102',
+            ability: []
         });
         expect(pokemon.getName()).toBe("Pikachu");
         expect(pokemon.getScore()).toBe(50);
@@ -27,7 +29,9 @@ describe("Pokemon", () => {
             score: 50,
             lastAddressCaptured: "Rua A, Bairro B, Cidade C, ST, BRA, 12345678",
             last_evolve_at: null,
-            is_released: true
+            is_released: true,
+            poke_id: 'poke-102',
+            ability: []
         });
         expect(() => pokemon.release()).toThrow(CustomError);
     });
@@ -41,7 +45,9 @@ describe("Pokemon", () => {
             score: 50,
             lastAddressCaptured: "Rua A, Bairro B, Cidade C, ST, BRA, 12345678",
             last_evolve_at: null,
-            is_released: false
+            is_released: false,
+            poke_id: 'poke-102',
+            ability: []
         });
         pokemon.recapture("Rua X, Bairro Y, Cidade Z, ST, BRA, 87654321");
         expect(pokemon.getFullLastCapturedAddress()).toBe("Rua X, Bairro Y, Cidade Z, ST, BRA, 87654321");
@@ -56,7 +62,9 @@ describe("Pokemon", () => {
             score: 50,
             lastAddressCaptured: "Rua A, Bairro B, Cidade C, ST, BRA, 12345678",
             last_evolve_at: new Date(Date.now() - (Pokemon.TIME_AWAIT_PER_EVOLVE + 1000)),
-            is_released: false
+            is_released: false,
+            poke_id: 'poke-102',
+            ability: []
         });
         expect(pokemon.evolve()).toBeTruthy();
         expect(pokemon.getScore()).toBe(60);
@@ -71,7 +79,9 @@ describe("Pokemon", () => {
             score: 50,
             lastAddressCaptured: "Rua A, Bairro B, Cidade C, ST, BRA, 12345678",
             last_evolve_at: new Date(Date.now() - 5000),
-            is_released: false
+            is_released: false,
+            poke_id: 'poke-102',
+            ability: []
         });
         expect(() => pokemon.evolve()).toThrow(CustomError);
     });
@@ -85,7 +95,9 @@ describe("Pokemon", () => {
             score: PokeScore.LEVEL_SUPREME_GOD,
             lastAddressCaptured: "Rua A, Bairro B, Cidade C, ST, BRA, 12345678",
             last_evolve_at: new Date(Date.now() - (Pokemon.TIME_AWAIT_PER_EVOLVE + 1000)),
-            is_released: false
+            is_released: false,
+            poke_id: 'poke-102',
+            ability: []
         });
         expect(pokemon.evolve()).toBe("max_envolve_rached");
     });

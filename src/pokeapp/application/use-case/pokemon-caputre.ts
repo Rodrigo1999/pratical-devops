@@ -4,7 +4,7 @@ import { Id } from '@shared/domain/vo'
 import CustomError from 'src/shared/domain/service/custom-error'
 
 interface InputDTO{
-    id: string
+    poke_id: string
     cep: string
 }
 
@@ -18,7 +18,7 @@ interface OutputDTO{
 interface Dependencies{
     pokedexGateway: Pick<Pokeapp.Gateway.Pokedex, 'getPokemonById'>
     geolocationGateway: Pick<Pokeapp.Gateway.Geolocation, 'getFullAddressByCep'>
-    pokemonRepository: Pick<Pokeapp.Repository.Pokemon, 'save' | 'wasAreadyCaptured'>
+    pokemonRepository: Pick<Pokeapp.Repository.Pokemon, 'save' | 'wasAreadyCapturedByPokeId'>
 }
 
 /**
@@ -37,13 +37,11 @@ export default class UseCasePokemonCapture{
 
     async execute(input: InputDTO): Promise<OutputDTO>{
 
-        const pokemonId = new Id(input.id)
-
-        const wasAreadyCaptured = await this.deps.pokemonRepository.wasAreadyCaptured(pokemonId);
+        const wasAreadyCaptured = await this.deps.pokemonRepository.wasAreadyCapturedByPokeId(input.poke_id);
 
         if(wasAreadyCaptured) throw new CustomError('Pokemon já foi capturado', 'conflict', 'poke-001');
 
-        const pokemonInfo = await this.deps.pokedexGateway.getPokemonById(input.id);
+        const pokemonInfo = await this.deps.pokedexGateway.getPokemonById(input.poke_id);
         
         if(!pokemonInfo) throw new CustomError('Pokemon não encontrado', 'not_found', 'poke-002');
 
@@ -54,7 +52,8 @@ export default class UseCasePokemonCapture{
 
         const pokemon = Pokemon.create({
             name: pokemonInfo.name,
-            capturedAddress: addressInfo.full_address
+            capturedAddress: addressInfo.full_address,
+            poke_id: pokemonInfo.id
         })
 
         await this.deps.pokemonRepository.save(pokemon)

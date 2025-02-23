@@ -11,6 +11,8 @@ export default class Pokemon extends EntityBase<Pokemon>{
     private lastAddressCaptured;
     private last_evolve_at;
     private is_released;
+    private ability;
+    private poke_id;
 
     private lastAddressCapturedShouldBeSave = false
 
@@ -26,6 +28,8 @@ export default class Pokemon extends EntityBase<Pokemon>{
         this.lastAddressCaptured = new CapturedAddress(data.lastAddressCaptured)
         this.last_evolve_at = data.last_evolve_at || null
         this.is_released = data.is_released
+        this.ability = data.ability
+        this.poke_id = data.poke_id
         
         if(this.Id.isGenratedId()) {
             this.lastAddressCapturedShouldBeSave = true
@@ -74,7 +78,9 @@ export default class Pokemon extends EntityBase<Pokemon>{
             score: data.score || 0,
             lastAddressCaptured: data.capturedAddress,
             last_evolve_at: null,
-            is_released: false
+            is_released: false,
+            ability: data.ability || [],
+            poke_id: data.poke_id
         })
 
         pokemon.normalizeScoreByPokemonName()

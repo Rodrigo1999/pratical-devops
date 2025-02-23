@@ -12,7 +12,7 @@ interface OutputDTO{
 }
 
 interface Dependencies{
-    pokemonRepository: Pick<Pokeapp.Repository.Pokemon, 'getById' | 'save' | 'wasAreadyCaptured'>
+    pokemonRepository: Pick<Pokeapp.Repository.Pokemon, 'getById' | 'save'>
 }
 
 /**
