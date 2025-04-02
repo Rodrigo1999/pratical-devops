@@ -1,15 +1,5 @@
 declare namespace Geolocation{
-    interface HttpApi{
-        get<T>(url: string, configs?: Partial<{
-            queryParams: Record<string, any>
-        }>): Promise<{
-            data: T
-            status: number
-        }>
-    }
+    type HttpApi = Shared.HttpApi
 
-    interface HttpApiCreate{
-        baseURL?: string
-        serviceName: string
-    }
+    type HttpApiCreate = Shared.HttpApiCreate
 }

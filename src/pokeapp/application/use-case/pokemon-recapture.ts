@@ -2,7 +2,7 @@ import { Id } from '@shared/domain/vo'
 import CustomError from 'src/shared/domain/service/custom-error'
 
 interface InputDTO{
-    id: string
+    poke_id: string
     cep: string
 }
 
@@ -15,7 +15,7 @@ interface OutputDTO{
 
 interface Dependencies{
     geolocationGateway: Pick<Pokeapp.Gateway.Geolocation, 'getFullAddressByCep'>
-    pokemonRepository: Pick<Pokeapp.Repository.Pokemon, 'getById' | 'save'>
+    pokemonRepository: Pick<Pokeapp.Repository.Pokemon, 'getByPokeId' | 'save'>
 }
 
 /**
@@ -30,9 +30,7 @@ export default class UseCasePokemonRecapture{
 
     async execute(input: InputDTO): Promise<OutputDTO>{
 
-        const pokemonId = new Id(input.id)
-
-        const pokemon = await this.deps.pokemonRepository.getById(pokemonId);
+        const pokemon = await this.deps.pokemonRepository.getByPokeId(input.poke_id);
         
         if(!pokemon) throw new CustomError('Não foi possível recapturar um pokemon que você nunca teve', 'not_found', 'pokemon-005');
         if(!pokemon.isReleased()) throw new CustomError('Você já se encontra com esse pokemon capturado', 'failed', 'pokemon-006');

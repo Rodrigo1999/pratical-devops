@@ -13,6 +13,10 @@ export default class PokemonRepository implements Pokeapp.Repository.Pokemon{
         throw new Error("Method not implemented.");
     }
 
+    getByPokeId(poke_id: string): InputOutput['getByPokeId']['output'] {
+        throw new Error("Method not implemented.");
+    }
+
     wasAreadyCapturedByPokeId(poke_id: string): InputOutput['wasAreadyCapturedByPokeId']['output'] {
         throw new Error("Method not implemented.");
     }
