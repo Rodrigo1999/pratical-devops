@@ -12,4 +12,8 @@ export default class Id{
     isGenratedId(){
         return this.id.startsWith('temp_')
     }
+
+    compare(id: string){
+        return this.id === id
+    }
 }

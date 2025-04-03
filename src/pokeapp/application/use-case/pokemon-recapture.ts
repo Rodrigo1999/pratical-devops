@@ -1,4 +1,3 @@
-import { Id } from '@shared/domain/vo'
 import CustomError from 'src/shared/domain/service/custom-error'
 
 interface InputDTO{
@@ -8,9 +7,15 @@ interface InputDTO{
 
 interface OutputDTO{
     id: string
+    poke_id: string
     name: string
-    full_captured_address: string
     level: Pokeapp.PokeLevel
+    score: number
+    full_captured_address: string
+    ability: Array<{
+        name: string
+        slot: number
+    }>
 }
 
 interface Dependencies{
@@ -45,9 +50,12 @@ export default class UseCasePokemonRecapture{
 
         return {
             id: pokemon.getId(),
+            poke_id: pokemon.poke_id,
             name: pokemon.getName(),
             level: pokemon.getLevel(),
-            full_captured_address: pokemon.getFullLastCapturedAddress()
+            full_captured_address: pokemon.getFullLastCapturedAddress(),
+            score: pokemon.getScore(),
+            ability: pokemon.ability
         }
     }
 }

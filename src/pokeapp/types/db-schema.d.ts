@@ -4,10 +4,10 @@ declare namespace Pokeapp.DbSchema{
         name: string
         score: number
         poke_id: string
-        last_evolve_at: Date
+        last_evolve_at: Date | null
         is_released: boolean
         created_at: Date
-        update_at: Date
+        updated_at: Date
     }
 
     interface AbilityTable{
@@ -16,7 +16,7 @@ declare namespace Pokeapp.DbSchema{
         slot: number
         pokemon_id: string
         created_at: Date
-        update_at: Date
+        updated_at: Date
     }
 
     interface AddressTable{
@@ -24,7 +24,7 @@ declare namespace Pokeapp.DbSchema{
         full_address: string
         pokemon_id: string
         created_at: Date
-        update_at: Date
+        updated_at: Date
     }
 
     interface Db{

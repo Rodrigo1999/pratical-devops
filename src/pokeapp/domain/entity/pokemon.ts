@@ -9,10 +9,10 @@ export default class Pokemon extends EntityBase<Pokemon>{
     private name;
     private score;
     private lastAddressCaptured;
-    private last_evolve_at;
+    last_evolve_at;
     private is_released;
-    private ability;
-    private poke_id;
+    ability;
+    poke_id;
 
     private lastAddressCapturedShouldBeSave = false
 
@@ -65,6 +65,7 @@ export default class Pokemon extends EntityBase<Pokemon>{
     recapture(address: string){
         this.lastAddressCaptured = new CapturedAddress(address)
         this.lastAddressCapturedShouldBeSave = true
+        this.is_released = false
         return this
     }
 

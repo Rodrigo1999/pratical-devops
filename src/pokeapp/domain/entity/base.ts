@@ -14,4 +14,9 @@ export default abstract class EntityBase<T> implements Shared.IEntity<T>{
     getId() {
         return this.Id.value
     }
+
+    setId(id: string){
+        this.Id = new Id(id)
+        return this
+    }
 }

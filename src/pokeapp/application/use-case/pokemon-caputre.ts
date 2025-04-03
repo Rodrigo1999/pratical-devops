@@ -10,9 +10,15 @@ interface InputDTO{
 
 interface OutputDTO{
     id: string
+    poke_id: string
     name: string
-    full_captured_address: string
     level: Pokeapp.PokeLevel
+    score: number
+    full_captured_address: string
+    ability: Array<{
+        name: string
+        slot: number
+    }>
 }
 
 interface Dependencies{
@@ -39,7 +45,7 @@ export default class UseCasePokemonCapture{
 
         const wasAreadyCaptured = await this.deps.pokemonRepository.wasAreadyCapturedByPokeId(input.poke_id);
 
-        if(wasAreadyCaptured) throw new CustomError('Pokemon já foi capturado', 'conflict', 'poke-001');
+        if(wasAreadyCaptured) throw new CustomError('Pokemon já foi capturado uma vez', 'conflict', 'poke-001');
 
         const pokemonInfo = await this.deps.pokedexGateway.getPokemonById(input.poke_id);
         
@@ -49,20 +55,23 @@ export default class UseCasePokemonCapture{
 
         if(!addressInfo) throw new CustomError('Endereço do cep não encontrado', 'not_found', 'poke-003');
 
-
         const pokemon = Pokemon.create({
             name: pokemonInfo.name,
             capturedAddress: addressInfo.full_address,
-            poke_id: pokemonInfo.id
+            poke_id: pokemonInfo.id,
+            ability: pokemonInfo.ability
         })
 
         await this.deps.pokemonRepository.save(pokemon)
 
         return {
             id: pokemon.getId(),
+            poke_id: pokemon.poke_id,
             name: pokemon.getName(),
             level: pokemon.getLevel(),
-            full_captured_address: pokemon.getFullLastCapturedAddress()
+            full_captured_address: pokemon.getFullLastCapturedAddress(),
+            score: pokemon.getScore(),
+            ability: pokemon.ability
         }
     }
 }

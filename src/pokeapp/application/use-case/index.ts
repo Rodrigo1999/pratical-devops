@@ -24,3 +24,5 @@ const pokeAppUseCase = {
 }
 
 export default pokeAppUseCase
+
+export type PokeAppUseCase = typeof pokeAppUseCase

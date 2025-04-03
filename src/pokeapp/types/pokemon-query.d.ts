@@ -6,11 +6,11 @@ declare namespace Pokeapp.Query{
             name: string
             level: Pokeapp.PokeLevel
             score: number
+            last_address_captured: string
             ability: Array<{
                 name: string
                 slot: number
             }>
-            last_address_captured: string
         }>>
     }
 }

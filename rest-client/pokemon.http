@@ -1,0 +1,29 @@
+### Listar todos os pokemons capturados
+GET http://localhost:5000/pokemons
+Accept: application/json
+
+### Captura um pokemon
+POST http://localhost:5000/pokemons/capture
+content-type: application/json
+
+{
+    "poke_id": "poke_19",
+    "cep": "64640000"
+}
+
+### Evolui um pokemon
+PUT http://localhost:5000/pokemons/evolve/ne4j9cmvkp
+content-type: application/json
+
+### Recaptura um pokemon
+POST http://localhost:5000/pokemons/recapture
+content-type: application/json
+
+{
+    "poke_id": "poke_19",
+    "cep": "64607715"
+}
+
+### Libera/abandona um pokemon
+DELETE http://localhost:5000/pokemons/release/r0o6l24f628
+content-type: application/json
