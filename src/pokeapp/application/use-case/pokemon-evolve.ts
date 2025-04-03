@@ -30,6 +30,7 @@ export default class UseCasePokemonEvolve{
         const pokemon = await this.deps.pokemonRepository.getById(pokemonId);
 
         if(!pokemon) throw new CustomError('Pokemon não encontrado', 'not_found', 'pokemon-002');
+        if(pokemon.isReleased()) throw new CustomError('Lamento, você abandonou este pokemon', 'not_found', 'pokemon-004');
 
         const resultPokemonEvolve = pokemon.evolve()
 
