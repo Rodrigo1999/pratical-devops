@@ -1,0 +1,3 @@
+### Listar todos os pokemons capturados
+GET http://localhost:5000/pokemons
+Accept: application/json

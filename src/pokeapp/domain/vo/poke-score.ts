@@ -19,18 +19,22 @@ export default class PokeScore{
     }
 
     getLevel(){
-        if(this.score <= PokeScore.LEVEL_DEMIGOD_SCORE){
-            return 'demigod'
-        }else if(isBetween(PokeScore.LEVEL_DEMIGOD_SCORE, this.score, [PokeScore.LEVEL_GOD])){
-            return 'god'
-        }else if(isBetween(PokeScore.LEVEL_GOD, this.score, [PokeScore.LEVEL_SUPREME_GOD])){
-            return 'supreme_god'
-        };
-
-        return 'demigod'
+        return PokeScore.scoreToLevel(this.score)
     }
 
     isEqual(pokeScore: PokeScore){
         return this.value === pokeScore.value
+    }
+
+    static scoreToLevel(score: number){
+        if(score <= PokeScore.LEVEL_DEMIGOD_SCORE){
+            return 'demigod'
+        }else if(isBetween(PokeScore.LEVEL_DEMIGOD_SCORE, score, [PokeScore.LEVEL_GOD])){
+            return 'god'
+        }else if(isBetween(PokeScore.LEVEL_GOD, score, [PokeScore.LEVEL_SUPREME_GOD])){
+            return 'supreme_god'
+        };
+
+        return 'demigod'
     }
 }

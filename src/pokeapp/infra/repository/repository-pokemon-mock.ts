@@ -3,7 +3,7 @@ import type { Id } from "@shared/domain/vo";
 
 type InputOutput = IInputOutput<Pokeapp.Repository.Pokemon>
 
-export default class PokemonRepository implements Pokeapp.Repository.Pokemon{
+export default class PokemonRepositoryMock implements Pokeapp.Repository.Pokemon{
 
     save(pokemon: Pokemon): InputOutput['save']['output'] {
         throw new Error("Method not implemented.");

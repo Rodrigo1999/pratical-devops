@@ -19,7 +19,8 @@ export default class QueryPokemon implements Pokedex.Query.Pokemon {
                 }>
             }>(`/${id.replace('poke_', '')}`)
 
-            if(result.status === 404) throw new CustomError('Ops, não foi possível consultar este pokemon') 
+            if(result.status === 404) throw new CustomError('Ops, não foi possível consultar este pokemon');
+            
             return {
                 id,
                 name: result.data.name,

@@ -1,0 +1,40 @@
+{
+    "pokemon": [
+        {
+            "id": 1,
+            "name": "pikachu",
+            "score": 22,
+            "poke_id": "poke_1",
+            "last_evolve_at": "2025-04-03T00:41:35.025Z",
+            "is_released": false,
+            "created_at": "2025-04-03T00:41:34.025Z",
+            "update_at": "2025-04-03T00:41:34.025Z"
+        }
+    ],
+    "address": [
+        {
+            "id": 1,
+            "full_address": "Rua Manoel Mariano,Centro,SAL city,PI,BRA,64640000",
+            "pokemon_id": 1,
+            "created_at": "2025-04-03T00:41:34.025Z",
+            "update_at": "2025-04-03T00:41:34.025Z"
+        },
+        {
+            "id": 1,
+            "full_address": "Rua das banana,Bairro da lagoa,SAL city,PI,BRA,64640000",
+            "pokemon_id": 2,
+            "created_at": "2025-04-03T00:41:54.025Z",
+            "update_at": "2025-04-03T00:41:54.025Z"
+        }
+    ],
+    "ability": [
+        {
+            "id": 1,
+            "name": "Lançar raio",
+            "slot": 5,
+            "pokemon_id": 1,
+            "created_at": "2025-04-03T00:41:34.025Z",
+            "update_at": "2025-04-03T00:41:34.025Z"
+        }
+    ]
+}
