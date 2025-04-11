@@ -9,12 +9,15 @@
     "esModuleInterop": true,                             
     "forceConsistentCasingInFileNames": true,           
     "strict": true,                                      
-    "skipLibCheck": true,                                 
+    "skipLibCheck": true,  
+    "resolveJsonModule": true,                               
     "paths": {
       "@pokeapp/*": ["./src/pokeapp/*"],
       "@geolocation/*": ["./src/geolocation/*"],
       "@pokedex/*": ["./src/pokedex/*"],
-      "@shared/*": ["./src/shared/*"]
+      "@shared/*": ["./src/shared/*"],
+      "@config/*": ["./src/config/*"]
     }
-  }
+  },
+  "include": ["src/**/*"]
 }

@@ -1,5 +1,5 @@
 import { Id } from '@shared/domain/vo'
-import CustomError from 'src/shared/domain/service/custom-error'
+import CustomError from '@shared/domain/service/custom-error'
 
 interface InputDTO{
     id: string

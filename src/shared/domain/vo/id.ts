@@ -1,5 +1,7 @@
 export default class Id{
-    constructor(private readonly id: string){}
+    constructor(private readonly id: string){
+        this.id = String(id)
+    }
 
     get value(){
         return this.id

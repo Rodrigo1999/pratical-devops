@@ -41,8 +41,8 @@ class InputMapperDatabase{
             id: PokemonRepositoryMock.generateId(),
             full_address: address.getCompressedFullAddress(),
             pokemon_id: pokemon.getId(),
-            created_at: pokemon.created_at,
-            updated_at: pokemon.updated_at
+            created_at: new Date(),
+            updated_at: new Date()
         }
     }
 }

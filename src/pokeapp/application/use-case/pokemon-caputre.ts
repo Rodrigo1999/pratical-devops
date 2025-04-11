@@ -1,7 +1,6 @@
 
 import { Pokemon } from '@pokeapp/domain/entity'
-import { Id } from '@shared/domain/vo'
-import CustomError from 'src/shared/domain/service/custom-error'
+import CustomError from '@shared/domain/service/custom-error'
 
 interface InputDTO{
     poke_id: string

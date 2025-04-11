@@ -1,6 +1,6 @@
+import './config/paths'
 import routes from '@pokeapp/infra/api/routes'
 import express from 'express'
-
 const app = express()
 const PORT = process.env.PORT || 5000
 
