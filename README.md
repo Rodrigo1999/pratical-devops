@@ -72,3 +72,33 @@ Ao chamar o endpoint de evoluir pokemon, passando o id do pokemon que quero evol
 * Verificarei se esse pokemon existe no banco de dados, mesmo ele já estando excluído, se sim, considerarei uma recaptura.
 * mudar status do pokemon para ativo novamente
 * salvar ultimo endereço de recaptura na lista de endereços de captura daquele polemon seguindos os padrões do fluxo de "captura".
+
+
+## Execução
+
+Crie um banco de dados local com as especificações mencionadas no arquivo `.env`
+
+### Execução em ambiente de desenvolvimento
+
+```bash
+# Para rodar as migration e criar as tabelas no banco de dados.
+npm run dev:knex:migrate
+# Para executar o projeto em modo de desenvolvimento.
+npm run dev
+```
+
+### Execução em ambiente de produção
+
+```bash
+# Para rodar as migration e criar as tabelas no banco de dados.
+npm run prod:knex:migrate
+# Para executar o projeto em modo de produção.
+npm run start
+```
+
+### Execução em ambiente de teste
+
+```bash
+# Para executar o projeto em modo de teste.
+npm run test
+```
