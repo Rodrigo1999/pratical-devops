@@ -1,3 +1,4 @@
+import ENV from "../env.config";
 import type { Knex } from "knex";
 
 // Update with your config settings.
@@ -16,11 +17,11 @@ const config: { [key in 'development' | 'staging' | 'production' | 'test']: Knex
   development: {
     client: "mysql2",
     connection: {
-      database: "pokeapp",
-      user: "root",
-      password: "123456",
-      port: 3306,
-      ssl: false
+      database: ENV.DATABASE_NAME,
+      user: ENV.DATABASE_USER,
+      password: ENV.DATABASE_PASSWORD,
+      port: ENV.DATABASE_PORT,
+      ssl: ENV.DATABASE_SSL
     },
     ...common
   },
@@ -28,11 +29,11 @@ const config: { [key in 'development' | 'staging' | 'production' | 'test']: Knex
   test: {
     client: "mysql2",
     connection: {
-      database: "pokeapp",
-      user: "root",
-      password: "123456",
-      port: 3306,
-      ssl: false
+      database: ENV.DATABASE_NAME,
+      user: ENV.DATABASE_USER,
+      password: ENV.DATABASE_PASSWORD,
+      port: ENV.DATABASE_PORT,
+      ssl: ENV.DATABASE_SSL
     },
     ...common
   },
@@ -40,10 +41,11 @@ const config: { [key in 'development' | 'staging' | 'production' | 'test']: Knex
   staging: {
     client: "mysql2",
     connection: {
-      database: "pokeapp",
-      user: "root",
-      password: "123456",
-      port: 3306
+      database: ENV.DATABASE_NAME,
+      user: ENV.DATABASE_USER,
+      password: ENV.DATABASE_PASSWORD,
+      port: ENV.DATABASE_PORT,
+      ssl: ENV.DATABASE_SSL
     },
     ...common
   },
@@ -51,10 +53,11 @@ const config: { [key in 'development' | 'staging' | 'production' | 'test']: Knex
   production: {
     client: "mysql2",
     connection: {
-      database: "pokeapp",
-      user: "root",
-      password: "123456",
-      port: 3306
+      database: ENV.DATABASE_NAME,
+      user: ENV.DATABASE_USER,
+      password: ENV.DATABASE_PASSWORD,
+      port: ENV.DATABASE_PORT,
+      ssl: ENV.DATABASE_SSL
     },
     ...common
   }
