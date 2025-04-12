@@ -5,7 +5,7 @@ import db from "@pokeapp/infra/db/db-mysql/db";
 import ENV from "@config/env.config";
 
 const pokeappQuery = {
-    pokemon: ENV.isTest ? new QueryPokemonJson(dbJsonFile) : new QueryPokemon(db),
+    pokemon: ENV.DATABASE_TYPE === 'json' ? new QueryPokemonJson(dbJsonFile) : new QueryPokemon(db),
 }
 
 export default pokeappQuery

@@ -35,6 +35,13 @@ const ENV = {
     DATABASE_PASSWORD: process.env.DATABASE_PASSWORD,
     DATABASE_PORT: Number(process.env.DATABASE_PORT),
     DATABASE_SSL: process.env.DATABASE_SSL === 'true' ? true : false,
+    DATABASE_TYPE: (() => {
+        switch(process.env.DATABASE_TYPE){
+            case 'json': return 'json' as const;
+            case 'mysql': return 'mysql' as const;
+            default: return 'mysql' as const;
+        }
+    })()
 }
 
 export default ENV
