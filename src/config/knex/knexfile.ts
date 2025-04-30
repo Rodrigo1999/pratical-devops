@@ -21,7 +21,8 @@ const config: { [key in 'development' | 'staging' | 'production' | 'test']: Knex
       user: ENV.DATABASE_USER,
       password: ENV.DATABASE_PASSWORD,
       port: ENV.DATABASE_PORT,
-      ssl: ENV.DATABASE_SSL
+      ssl: ENV.DATABASE_SSL,
+      host: ENV.DATABASE_HOST
     },
     ...common
   },
@@ -33,7 +34,8 @@ const config: { [key in 'development' | 'staging' | 'production' | 'test']: Knex
       user: ENV.DATABASE_USER,
       password: ENV.DATABASE_PASSWORD,
       port: ENV.DATABASE_PORT,
-      ssl: ENV.DATABASE_SSL
+      ssl: ENV.DATABASE_SSL,
+      host: ENV.DATABASE_HOST
     },
     ...common
   },
@@ -45,7 +47,8 @@ const config: { [key in 'development' | 'staging' | 'production' | 'test']: Knex
       user: ENV.DATABASE_USER,
       password: ENV.DATABASE_PASSWORD,
       port: ENV.DATABASE_PORT,
-      ssl: ENV.DATABASE_SSL
+      ssl: ENV.DATABASE_SSL,
+      host: ENV.DATABASE_HOST
     },
     ...common
   },
@@ -57,7 +60,8 @@ const config: { [key in 'development' | 'staging' | 'production' | 'test']: Knex
       user: ENV.DATABASE_USER,
       password: ENV.DATABASE_PASSWORD,
       port: ENV.DATABASE_PORT,
-      ssl: ENV.DATABASE_SSL
+      ssl: ENV.DATABASE_SSL,
+      host: ENV.DATABASE_HOST
     },
     ...common
   }

@@ -41,7 +41,8 @@ const ENV = {
             case 'mysql': return 'mysql' as const;
             default: return 'mysql' as const;
         }
-    })()
+    })(),
+    DATABASE_HOST: process.env.DATABASE_HOST,
 }
 
 export default ENV
