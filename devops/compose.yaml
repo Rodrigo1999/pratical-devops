@@ -42,6 +42,8 @@ services:
       - mysql
     networks:
       - pokeapp
+  
+  # use this service to run if necessary implements mysql
   mysql:
     image: mysql:9.3.0
     env_file: ../.env.dev
