@@ -22,3 +22,7 @@ k3d cluster create praticaldevops --servers 1 --agents 3 -p "8080:30000@loadbala
 
 Dessa forma estou criando um cluster com 1 control plane e 3 workers nodes, e expondo a porta 8080 do load balancer para a porta 30000 do cluster. 
 Essa exposição será útil pra integração com o `nginx ingress controller`, quando isso acontecer, ao invés de fornecer 8080 como porta eu forneço a porta 80.
+
+### Kubectl
+
+Ao instalar o kubectl posso então usar o comando `kubectl` para interagir com o cluster.
