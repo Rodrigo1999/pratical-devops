@@ -1,0 +1,25 @@
+# Criará replica de vários pod
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: pokeappreplicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pokeapp
+  template:
+    metadata:
+      labels:
+        app: pokeapp
+    spec:
+      containers:
+        - name: myapp
+          image: ghcr.io/rodrigo1999/pokeapp
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          env:
+            - name: DATABASE_TYPE
+              value: "json"

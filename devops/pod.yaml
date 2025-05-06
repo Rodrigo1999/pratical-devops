@@ -1,0 +1,13 @@
+# O pod é a forma mais simples de executar um contêiner no Kubernetes.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+    - name: pokeapp
+      image: ghcr.io/rodrigo1999/pokeapp
+      ports:
+        - name: http
+          containerPort: 5000
+          protocol: TCP

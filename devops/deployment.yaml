@@ -1,0 +1,27 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokeapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pokeapp
+  template:
+    metadata:
+      labels:
+        app: pokeapp
+    spec:
+      containers:
+        - name: pokeapp
+          # Versão abaixo ta com falha, servirá pra eu ver a mudança em ação.
+          # image: ghcr.io/rodrigo1999/pokeapp:v1.0.0
+          image: ghcr.io/rodrigo1999/pokeapp
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          env:
+            - name: DATABASE_TYPE
+              value: "json"
