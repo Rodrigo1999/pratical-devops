@@ -1,0 +1,22 @@
+{
+  "name": "pratical-devops",
+  "version": "1.0.0",
+  "description": "O objetivo deste repositório é rodar as migrações do banco de dados",
+  "scripts": {
+    "build": "tsc",
+    "knex:migrate": "RUNING_MIGRATE=true knex migrate:latest --knexfile ./knex-build/knex/knexfile.ts",
+    "dev:knex:init_migration": "knex --knexfile=./knex/knexfile.ts migrate:make migration_name -x ts",
+    "dev:knex:migrate": "npm run build && NODE_ENV=development npm run knex:migrate",
+    "prod:knex:migrate": "NODE_ENV=production npm run knex:migrate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^3.1.0",
+    "dotenv": "^16.5.0",
+    "mysql2": "^3.14.0",
+    "@types/node": "^22.13.4",
+    "typescript": "^5.7.3"
+  }
+}

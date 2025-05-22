@@ -13,7 +13,7 @@ FROM base AS dev
 RUN pnpm install
 COPY . .
 EXPOSE 5000
-CMD [ "pnpm", "dev" ]
+CMD [ "pnpm", "dev:knex:migrate" ]
 
 # ------------------------For prod environment------------------------
 # Build stage
@@ -24,7 +24,7 @@ RUN pnpm build
 
 # Image prod
 FROM base AS prod
-COPY --from=build ./home/node/app/build ./build
-RUN pnpm install --frozen-lockfile --prod
+COPY --from=build ./home/node/app/knex-build ./knex-build
+COPY --from=build ./home/node/app/node_modules ./node_modules
 EXPOSE 5000
-CMD [ "pnpm", "start" ]
+CMD [ "pnpm", "prod:knex:migrate" ]

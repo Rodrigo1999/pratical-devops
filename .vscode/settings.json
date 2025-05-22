@@ -2,5 +2,11 @@
     "code-runner.executorMap": {
         "typescript": "cross-env NODE_ENV=development npx ts-node -r tsconfig-paths/register --transpileOnly $fullFileName",
         "javascript": "node $fullFileName"
+    },
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "BASE_URL": "http://172.20.0.2:30000"
+            // "BASE_URL": "http://localhost:5000"
+        }
     }
 }

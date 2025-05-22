@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-pokeapp
+spec:
+  selector:
+    matchLabels:
+      app: mysql-pokeapp
+  template:
+    metadata:
+      labels:
+        app: mysql-pokeapp
+    spec:
+      containers:
+      - name: mysql-pokeapp
+        image: mysql:9.3.0
+        ports:
+        - containerPort: 3306
+        env:
+          - name: MYSQL_ROOT_HOST
+            value: '%'
+          - name: MYSQL_ROOT_PASSWORD
+            value: "654321"
+          - name: MYSQL_DATABASE
+            value: pokeapp
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  type: ClusterIP
+  selector:
+    app: mysql-pokeapp
+  ports:
+  - port: 3306
+    targetPort: 3306

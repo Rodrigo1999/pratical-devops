@@ -7,11 +7,7 @@
     "test": "jest",
     "start": "NODE_ENV=production node build/index.js",
     "dev": "NODE_ENV=development nodemon --ext ts --exec ts-node --swc -r tsconfig-paths/register --transpileOnly src/index.ts",
-    "build": "tsc",
-    "knex:migrate": "RUNING_MIGRATE=true knex migrate:latest --knexfile ./build/config/knex/knexfile.ts",
-    "dev:knex:init_migration": "knex --knexfile=./src/config/knex/knexfile.ts migrate:make migration_name -x ts",
-    "dev:knex:migrate": "npm run build && NODE_ENV=development npm run knex:migrate",
-    "prod:knex:migrate": "NODE_ENV=production npm run knex:migrate"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

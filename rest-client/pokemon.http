@@ -1,9 +1,9 @@
 ### Listar todos os pokemons capturados
-GET http://localhost:5000/pokemons
+GET {{BASE_URL}}/pokemons
 content-type: application/json
 
 ### Captura um pokemon
-POST http://localhost:5000/pokemons/capture
+POST {{BASE_URL}}/pokemons/capture
 content-type: application/json
 
 {
@@ -12,11 +12,11 @@ content-type: application/json
 }
 
 ### Evolui um pokemon
-PUT http://localhost:5000/pokemons/evolve/r0o6l24f628
+PUT {{BASE_URL}}/pokemons/evolve/1
 content-type: application/json
 
 ### Recaptura um pokemon
-POST http://localhost:5000/pokemons/recapture
+POST {{BASE_URL}}/pokemons/recapture
 content-type: application/json
 
 {
@@ -25,5 +25,5 @@ content-type: application/json
 }
 
 ### Libera/abandona um pokemon
-DELETE http://localhost:5000/pokemons/release/r0o6l24f628
+DELETE {{BASE_URL}}/pokemons/release/r0o6l24f628
 content-type: application/json

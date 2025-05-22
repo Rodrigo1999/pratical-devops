@@ -102,3 +102,11 @@ npm run start
 # Para executar o projeto em modo de teste.
 npm run test
 ```
+
+# Kubernetes
+
+We will create a application with kubernetes, using the k3d tool to create a cluster with 3 nodes, one master and two workers.
+
+First all, we need to organize our migration database to another directory to them be used in the kubernetes in init container, through another image.
+
+Directory: `knex-bundle`

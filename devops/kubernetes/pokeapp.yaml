@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pokeapp
+spec:
+  selector:
+    matchLabels:
+      app: pokeapp
+  template:
+    metadata:
+      labels:
+        app: pokeapp
+    spec:
+      initContainers:
+        - name: run-migration
+          image: ghcr.io/rodrigo1999/pokeapp-migrations
+          command: ["npm", "run", "dev:knex:migrate"]
+          envFrom:
+          - configMapRef:
+              name: pokeapp-env
+      containers:
+      - name: pokeapp
+        image: ghcr.io/rodrigo1999/pokeapp
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: pokeapp-env
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: pokeapp
+spec:
+  type: NodePort
+  selector:
+    app: pokeapp
+  ports:
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP
+    nodePort: 30000 # Port to loadbalancer
+
