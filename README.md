@@ -120,3 +120,39 @@ services.
 ```bash
 kubectl apply -f devops/kubernetes/secret-env.yaml -f devops/kubernetes/mysql.yaml -f devops/kubernetes/pokeapp.yaml
 ```
+
+But it is safe to use a static `PVC` and `PV` referencing a volume on digital ocean or any other cloud provider.
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: do-block-storage
+  volumeName: mysql-pv
+  resources:
+    requests:
+      storage: 5Gi
+
+```
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: do-block-storage
+  csi:
+    driver: dobs.csi.digitalocean.com
+    volumeHandle: volume-do-123abc  # ← coloque aqui o ID do volume da DO
+    fsType: ext4
+```
