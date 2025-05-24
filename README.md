@@ -110,3 +110,13 @@ We will create a application with kubernetes, using the k3d tool to create a clu
 First all, we need to organize our migration database to another directory to them be used in the kubernetes in init container, through another image.
 
 Directory: `knex-bundle`
+
+### volumes
+
+I managed to create diverse volume types, but the one that cought my attention was the `volumeClaimTemplates` with
+the `statefullset`, it will create a pv and pvc automatically, and it will be used because the name of the pod will be the same name of the pvc, or rather, the same reference, then, i will have mantained the data always i will start the 
+services.
+
+```bash
+kubectl apply -f devops/kubernetes/secret-env.yaml -f devops/kubernetes/mysql.yaml -f devops/kubernetes/pokeapp.yaml
+```

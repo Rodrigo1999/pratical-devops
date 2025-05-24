@@ -1,8 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: mysql-pokeapp
 spec:
+  serviceName: mysql
+  replicas: 1
   selector:
     matchLabels:
       app: mysql-pokeapp
@@ -26,10 +28,15 @@ spec:
         volumeMounts:
           - name: mysql-data
             mountPath: /var/lib/mysql
-      volumes:
-        - name: mysql-data
-          persistentVolumeClaim:
-            claimName: mysqlpvc
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: "local-path"
+      resources:
+        requests:
+          storage: 200Mi
 
 ---
 
@@ -39,6 +46,7 @@ metadata:
   name: mysql
 spec:
   type: ClusterIP
+  clusterIP: None
   selector:
     app: mysql-pokeapp
   ports:
