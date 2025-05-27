@@ -18,13 +18,9 @@ spec:
         image: mysql:9.3.0
         ports:
         - containerPort: 3306
-        env:
-          - name: MYSQL_ROOT_HOST
-            value: '%'
-          - name: MYSQL_ROOT_PASSWORD
-            value: "654321"
-          - name: MYSQL_DATABASE
-            value: pokeapp
+        envFrom:
+          - secretRef:
+            name: mysql-env
         volumeMounts:
           - name: mysql-data
             mountPath: /var/lib/mysql
