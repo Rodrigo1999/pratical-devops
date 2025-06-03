@@ -27,3 +27,12 @@ content-type: application/json
 ### Libera/abandona um pokemon
 DELETE {{BASE_URL}}/pokemons/release/r0o6l24f628
 content-type: application/json
+
+# --------------------------------------------------------------------------
+### Checa a saúde da aplicação
+GET {{BASE_URL}}/healthz
+content-type: application/json
+
+### Mudo o estado de heatlty da minha aplicação
+PUT {{BASE_URL}}/healthz
+content-type: application/json

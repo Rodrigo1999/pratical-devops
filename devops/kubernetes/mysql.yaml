@@ -20,7 +20,7 @@ spec:
         - containerPort: 3306
         envFrom:
           - secretRef:
-            name: mysql-env
+              name: mysql-env
         volumeMounts:
           - name: mysql-data
             mountPath: /var/lib/mysql
