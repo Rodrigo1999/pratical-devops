@@ -36,3 +36,11 @@ content-type: application/json
 ### Mudo o estado de heatlty da minha aplicação
 PUT {{BASE_URL}}/healthz
 content-type: application/json
+
+### ESTRESSA A CPU
+GET {{BASE_URL}}/stress-cpu?iterations=45
+content-type: application/json
+
+### ESTRESSA A MEMÓRIA
+GET {{BASE_URL}}/stress-memory
+content-type: application/json
