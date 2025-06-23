@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: pokeapp
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: pokeapp
@@ -27,26 +28,26 @@ spec:
           envFrom:
           - secretRef:
               name: pokeapp-env
-          # startupProbe:
-          #   tcpSocket:
-          #     port: 5000
-          #   failureThreshold: 10
-          #   periodSeconds: 5
-          # livenessProbe:
-          #   httpGet:
-          #     port: 5000
-          #     path: /healthz
-          #   initialDelaySeconds: 5
-          #   periodSeconds: 5
-          #   failureThreshold: 3
-          #   timeoutSeconds: 3
+          startupProbe:
+            tcpSocket:
+              port: 5000
+            failureThreshold: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              port: 5000
+              path: /healthz
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 3
+            timeoutSeconds: 3
           resources:
             requests:
               cpu: "200m"
-              memory: "80Mi"
+              memory: "320Mi"
             limits:
               cpu: "1000m"
-              memory: "320Mi"
+              memory: "1280Mi"
 ---
 
 apiVersion: v1
@@ -63,3 +64,50 @@ spec:
     protocol: TCP
     nodePort: 30000 # Port to loadbalancer
 
+--- 
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-pokeapp
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: pokeapp
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 50
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+        - periodSeconds: 10
+          type: Percent
+          value: 100
+        - periodSeconds: 10
+          type: Pods
+          value: 4
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 600
+      policies:
+        - periodSeconds: 15
+          type: Percent
+          value: 100
+        - periodSeconds: 15
+          type: Pods
+          value: 4
+      selectPolicy: Min

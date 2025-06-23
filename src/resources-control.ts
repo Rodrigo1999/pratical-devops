@@ -4,6 +4,8 @@ import os from 'os';
 
 export let LIVE_APP = true;
 let MEMORY_HOG: Buffer<ArrayBuffer>[] = []
+let TIMEOUT_FN_MEMORY_HOG: NodeJS.Timeout | undefined = undefined
+
 export default function resourceControl(app: Express) {
 
     app.put('/healthz', (req, res) => {
@@ -58,11 +60,21 @@ export default function resourceControl(app: Express) {
     app.get('/stress-memory', (req, res) => {
         // passe ?mb=200 para alocar 200 MiB; padrão 100 MiB
         const mb = parseInt(req.query.mb as string, 10) || 100;
+        const timeout = parseInt(req.query.timeout as string, 10) || 30 * 1000;
         const bytes = mb * 1024 * 1024;
 
         // Buffer.alloc preenche a memória imediatamente
         const chunk = Buffer.alloc(bytes, 'a');
         MEMORY_HOG.push(chunk);
+
+        if (TIMEOUT_FN_MEMORY_HOG) {
+            clearTimeout(TIMEOUT_FN_MEMORY_HOG);
+        }
+
+        TIMEOUT_FN_MEMORY_HOG = setTimeout(() => {
+            MEMORY_HOG = [];
+            TIMEOUT_FN_MEMORY_HOG = undefined;
+        }, timeout);
 
         res.json({
             message: `Alocado ${mb} MiB`,
