@@ -131,3 +131,11 @@ Them, i can access my application on:
 A interesting fact is that the port 30000 is accessible from outside the cluster, if i can access my service inside the cluster, i must to use the port 5000.
 
 With a loadbalancer my accesses to the application will be redirected to any node and any pod.
+
+### Create a cluster without traefik
+
+This is useful when i want create my own ingress controller, like nginx ingress controller, because on default the k3d creates a traefik ingress controller.
+
+```bash
+k3d cluster create praticaldevops --servers 1 --agents 3 -p "80:30000@loadbalancer" --k3s-arg "--disable=traefik@server:*"
+```

@@ -1,4 +1,5 @@
 resources:
+  - nginx-ingress.yaml
   - mysql-secret.yaml
   - secret-env.yaml
   - mysql.yaml

@@ -5,8 +5,9 @@
     },
     "rest-client.environmentVariables": {
         "$shared": {
-            "BASE_URL": "http://172.20.0.2:30000"
+            // "BASE_URL": "http://172.20.0.2:30000"
             // "BASE_URL": "http://localhost:5000"
+            "BASE_URL": "http://localhost"
         }
     }
 }

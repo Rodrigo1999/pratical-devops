@@ -62,7 +62,8 @@ spec:
   - port: 5000
     targetPort: 5000
     protocol: TCP
-    nodePort: 30000 # Port to loadbalancer
+    # Enable next line when not used ingress-controller
+    # nodePort: 30000 # Port to loadbalancer
 
 --- 
 
@@ -113,3 +114,20 @@ spec:
           type: Pods
           value: 4
       selectPolicy: Min
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pokeapp-nginx-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: pokeapp
+            port: 
+              number: 5000
